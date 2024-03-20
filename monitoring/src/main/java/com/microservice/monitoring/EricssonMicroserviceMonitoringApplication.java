@@ -8,6 +8,8 @@ public class EricssonMicroserviceMonitoringApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EricssonMicroserviceMonitoringApplication.class, args);
+		
+		System.out.println("START TO TEST");
 	}
 
 }
