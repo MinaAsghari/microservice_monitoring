@@ -9,3 +9,8 @@ services:
     container_name: grafanaCnr
     ports:
       - 3000:3000
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkinCnr
+    ports:
+       - 9411:9411
