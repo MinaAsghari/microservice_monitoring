@@ -14,7 +14,7 @@ to present them on a GUI (Grafana).
 The metrics must include the health and status of the services, dedicated performance KPI, and the capability to perform message tracing exchanged across the services showing the topological relationship among them. 
 
 
-Linux, SpringBoot, Java, Prometheus, Grafana
+Linux, SpringBoot, Java, Prometheus, Grafana , Zipkin
 
 
 What did we do?
