@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  microsservice:
+    #image: asgharim/myapp:07.04.24
+    image: asgharim/microsservice_app:latest
+    container_name: microsserviceCnr
+    environment:
+      - "TZ=Europe/Berlin" # Setting timezone to Berlin
+    command: /bin/sh -c 'apk --no-cache add tzdata && ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime && echo "Europe/Berlin" > /etc/timezone && date'
+    restart: always
+    ports:
+      - 8080:8080
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheusCnr
+    restart: always
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - TZ=Europe/Berlin # Setting timezone to Berlin
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./cnr_conf/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+     # - ./cnr_conf/prometheus/localtime:/etc/localtime:ro
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafanaCnr
+    environment:
+      - "TZ=Europe/Berlin" # Setting timezone to Berlin
+    ports:
+      - 3000:3000
+
+#volumes:
+  #grafana-data: # Optional persistent storage for Grafana
